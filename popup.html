@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles.css"> </head>
+
+<body>
+	<div class="title">
+		<h1>Twink Checker</h1>
+	</div>
+	
+	<!-- Control buttons -->
+	<div class="control-buttons">
+		<button id="start-button" class="control-btn start-btn">Запустить</button>
+		<button id="stop-button" class="control-btn stop-btn">Остановить</button>
+	</div>
+	
+	<!-- Progress monitoring section -->
+	<div id="progress-section" style="margin: 0.8rem 1rem; padding: 0.8rem; background-color: rgba(255, 138, 0, 0.1); border-radius: 8px; display: none;">
+		<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+			<span style="font-weight: bold; color: rgb(255, 138, 0); font-size: 0.9rem;">Прогресс сканирования:</span>
+			<span id="progress-text" style="color: #d1d1d1; font-size: 0.9rem;">0 / 0</span>
+		</div>
+		<div style="background-color: rgba(0, 0, 0, 0.3); border-radius: 8px; height: 16px; overflow: hidden;">
+			<div id="progress-bar" style="background: linear-gradient(90deg, rgb(255, 138, 0), rgb(255, 180, 50)); height: 100%; width: 0%; transition: width 0.3s ease; border-radius: 8px;"></div>
+		</div>
+		<div style="margin-top: 4px; font-size: 0.75rem; color: #a0a0a0; text-align: center;">
+			<span id="progress-status">Готов к запуску</span>
+		</div>
+	</div>
+	
+	<div class="wrapper">
+		<div class="tab-switches">
+			<div class="switch">
+				<input type="radio" name="css-tabs" id="switch-1" checked class="switch-radio">
+				<label for="switch-1" class="switch-label">Результаты</label>
+			</div>
+			<div class="switch">
+				<input type="radio" name="css-tabs" id="switch-2" class="switch-radio">
+				<label for="switch-2" class="switch-label">Ссылки</label>
+			</div>
+			<div class="switch">
+				<input type="radio" name="css-tabs" id="switch-3" class="switch-radio">
+				<label for="switch-3" class="switch-label">Настройки</label>
+			</div>
+		</div>
+		<div class="tabs">
+			<div class="tab" id="tab-1">
+				<div style="padding: 10px;">
+					<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+						<h3 style="margin: 0;">Найденные твинки:</h3>
+						<small style="color: #a0a0a0; font-size: 11px;">
+							Ник: <span id="results-nickname-display" style="color: rgb(255, 138, 0);">kenny</span>
+						</small>
+					</div>
+					<div id="results-content">Пока результатов нет...</div>
+					<div style="margin-top: 15px; display: flex; gap: 10px;">
+						<button id="copy-all-commands" style="padding: 8px 15px; background-color: rgb(255, 138, 0); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; flex: 1;">📋 Копировать все команды</button>
+						<button id="clear-results" style="padding: 8px 15px; background-color: #ff6b6b; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; flex: 1;">🗑️ Очистить результаты</button>
+					</div>
+				</div>
+			</div>
+			<div class="tab" id="tab-2">
+				<table class="container">
+					<tbody>
+						<tr>
+							<th><h4>Мафии:</h4></th>
+							<th><h4>Банды:</h4></th>
+							<th><h4>Гос. структуры:</h4></th>
+						</tr>
+						<tr>
+							<td><a href="https://gta5rp.com/mi?faction=F_RUSSIANMAFIA&act=faction_members&sid=20">Русская Мафия</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_GANG_BALLAS&act=faction_members&sid=20">Ballas</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_LSPD&act=faction_members&sid=20">LSPD</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://gta5rp.com/mi?faction=F_ITALYMAFIA&act=faction_members&sid=20">Итальянская Мафия</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_GANG_MARABUNTA&act=faction_members&sid=20">Marabunta</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_LSSD&act=faction_members&sid=20">LSSD</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://gta5rp.com/mi?faction=F_ARMENIAMAFIA&act=faction_members&sid=20">Армянская Мафия</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_GANG_VAGOS&act=faction_members&sid=20">Vagos</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_FIB&act=faction_members&sid=20">FIB</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://gta5rp.com/mi?faction=F_MEXICOMAFIA&act=faction_members&sid=20">Мексиканская Мафия</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_GANG_GROVE&act=faction_members&sid=20">Grove</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_LSARMY&act=faction_members&sid=20">Армия</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://gta5rp.com/mi?faction=F_YAKUZA&act=faction_members&sid=20">Японская Мафия</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_GANG_BLOODS&act=faction_members&sid=20">Bloods</a></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_NEWS&act=faction_members&sid=20">News</a></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_EMS&act=faction_members&sid=20">EMS</a></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_LSCITYHALL&act=faction_members&sid=20">Мэрия</a></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><a href="https://gta5rp.com/mi?faction=F_PRISON&act=faction_members&sid=20">Тюрьма</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="tab" id="tab-3">
+				<div style="padding: 8px;">
+					<h3 style="color: rgb(255, 138, 0); margin-bottom: 8px; text-align: center; font-size: 14px;">Настройки</h3>
+					
+					<!-- Current nickname display -->
+					<div style="margin-bottom: 8px; padding: 6px; background-color: rgba(0, 0, 0, 0.3); border-radius: 4px; border: 1px solid rgba(255, 138, 0, 0.4);">
+						<div style="font-size: 10px; color: #a0a0a0; margin-bottom: 2px;">Текущий ник для команд:</div>
+						<div style="font-weight: bold; color: rgb(255, 138, 0); font-size: 11px;">
+							// by <span id="current-nickname-display">kenny</span>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 8px;">
+						<label for="admin-nickname" style="display: block; color: #d1d1d1; margin-bottom: 4px; font-weight: bold; font-size: 11px;">
+							Ваш ник администратора:
+						</label>
+						<input 
+							type="text" 
+							id="admin-nickname" 
+							placeholder="kenny" 
+							style="
+								width: 100%; 
+								padding: 6px; 
+								border: 1px solid rgba(255, 138, 0, 0.4); 
+								border-radius: 4px; 
+								background-color: rgba(0, 0, 0, 0.3); 
+								color: #d1d1d1; 
+								font-size: 11px;
+								box-sizing: border-box;
+							"
+						/>
+						<small style="color: #a0a0a0; font-size: 9px; margin-top: 2px; display: block;">
+							Добавляется в команды как "// by [ваш_ник]"
+						</small>
+					</div>
+					
+					<!-- Export settings -->
+					<div style="margin-bottom: 8px; padding: 6px; background-color: rgba(255, 138, 0, 0.08); border-radius: 4px; border: 1px solid rgba(255, 138, 0, 0.3);">
+						<label style="display: flex; align-items: center; color: #d1d1d1; cursor: pointer; font-size: 11px;">
+							<input type="checkbox" id="auto-export-enabled" style="margin-right: 6px; transform: scale(0.9);">
+							📁 Автосохранение в Downloads
+						</label>
+						<small style="color: #a0a0a0; font-size: 9px; margin-top: 2px; margin-left: 16px; display: block;">
+							twink_results_ГГГГ-ММ-ДД_ЧЧ-ММ.txt
+						</small>
+					</div>
+					
+					<div style="text-align: center;">
+						<button 
+							id="save-settings" 
+							style="
+								padding: 5px 12px; 
+								background-color: rgb(255, 138, 0); 
+								color: white; 
+								border: none; 
+								border-radius: 4px; 
+								cursor: pointer; 
+								font-weight: bold;
+								font-size: 11px;
+								transition: background-color 0.3s ease;
+							"
+						>
+							💾 Сохранить
+						</button>
+					</div>
+					
+					<div id="save-status" style="
+						margin-top: 6px; 
+						text-align: center; 
+						font-size: 9px; 
+						color: #4CAF50; 
+						display: none;
+					">
+						✅ Настройки сохранены!
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p style="text-align: right; color: white;">// By Brudo x Triangle</p>
+	<script src="popup.js"></script>
+</body>
+
+</html>

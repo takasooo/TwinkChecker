@@ -1,0 +1,215 @@
+/* Общие стили */
+
+body {
+	width: 600px;
+	height: 350px;
+	position: relative;
+	align-items: center;
+	background-color: rgb(20, 20, 20);
+    background-image: url(https://gta5rp.com/_next/image?url=%2Fimages%2Fbg-large.webp&w=1920&q=100);
+    background-size: auto;
+    background-position: center center;
+}
+
+  .title {
+	display: flex;
+	font-size: 1.5rem;
+	justify-content: center;
+	text-align: center;
+	color:rgb(255, 138, 0); 
+	border-radius: 1rem;
+	background-color: rgba(17, 17, 17, 0.75); 
+	padding: 0.5rem 1rem; 
+	border-radius: 10px; 
+	margin: 0.5rem;
+  }
+
+  .title h1 {
+	margin: 0;
+	font-size: 1.5rem;
+  }
+
+  .control-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	margin: 0.5rem 1rem;
+  }
+
+  .control-btn {
+	padding: 0.5rem 1.3rem;
+	border: none;
+	border-radius: 6px;
+	font-size: 0.85rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-family: "YS Text", Arial, Helvetica, "Arial Unicode MS", sans-serif;
+  }
+
+  .start-btn {
+	background-color: rgb(34, 139, 34);
+	color: white;
+  }
+
+  .start-btn:hover {
+	background-color: rgb(46, 175, 46);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .stop-btn {
+	background-color: rgb(220, 53, 69);
+	color: white;
+  }
+
+  .stop-btn:hover {
+	background-color: rgb(240, 73, 89);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .control-btn:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .wrapper {
+	margin: 0.5rem;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	box-sizing: border-box;
+	background-color: rgba(17, 17, 17, 0.75);
+	border-radius: 10px; 
+	height: 25rem;
+	padding: 1rem; 
+	text-align: #fff
+  }
+
+.tab-switches {
+	position: relative;
+	margin: 2rem 0;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: top;
+}
+
+.switch-radio {
+	display: none;
+	width: 0;
+}
+
+.tabs {
+	display: flex;
+	height: 100%;
+}
+
+  .switch-label {
+	position: relative;
+	display: block;
+	height: 2em;
+	padding: 0 1.618em;
+	font-size: 1rem;
+	font-family: "YS Text", Arial, Helvetica, "Arial Unicode MS", sans-serif;
+	font-weight: bold;
+	cursor: pointer;
+	color: #d1d1d1; 
+	border-radius: 5px;
+  }
+
+  .tab {
+	width: 0;
+	padding: 0 1.618rem;
+	display: none;
+	transition: all 0.35s;
+	box-sizing: border-box;
+	overflow-y: auto;
+	height: 256px;
+	font-size: 1rem;
+	border-radius: 5px; 
+  }
+
+  .active-tab {
+	width: 95%;
+	display: block;
+	color: #d1d1d1;
+  }
+
+  .switch-radio:checked + .switch-label {
+	border-bottom: rgb(255, 138, 0) solid 3px; 
+  }
+
+  .container {
+	text-align: center;
+	width: 100%;
+	padding: 0.5rem; 
+	border-radius: 5px; 
+	font-size: 0.85rem;
+  }
+  
+  .container td, .container th {
+	padding: 0.3rem 0.5rem;
+	vertical-align: top;
+	width: 33.33%;
+	text-align: center;
+  }
+  
+  .container h4 {
+	margin: 0.2rem 0 0.5rem 0;
+	font-size: 1rem;
+	color: rgb(255, 138, 0);
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+  }a {
+	color: rgb(200, 200, 200); 
+	font-family: 'Montserrat', sans-serif; 
+	font-weight: 400; 
+	text-decoration: none; 
+	transition: all 0.3s ease-in-out; 
+	font-size: 0.85rem;
+	display: block;
+	padding: 0.2rem 0;
+	border-radius: 3px;
+  }
+  
+  a:hover {
+	color: rgb(255, 138, 0); 
+	background-color: rgba(255, 138, 0, 0.1);
+	transform: translateY(-1px);
+	text-shadow: 0 0 5px rgba(255, 138, 0, 0.3); 
+  }
+  
+  th {
+	color: rgb(255, 138, 0); 
+  }
+  
+  ::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+	background-color: #f7f7f700;
+	border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	background-color: rgb(255, 138, 0);
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+	background-color: rgb(255, 138, 0);
+  }
+  
+  ::-webkit-scrollbar-track {
+	background-color: #f7f7f700;
+	border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-track-piece {
+	background-color: #f7f7f700;
+	border-radius: 5px;
+  }

@@ -1,0 +1,20 @@
+{
+	"manifest_version": 2,
+	"name": "Twink Checker",
+	"version": "2.2",
+	"description": "Я ебу, как оно работает!",
+	"permissions": ["storage", "activeTab", "tabs", "downloads"],
+	"browser_action": {
+		"default_popup": "popup.html",
+		"default_icon": {
+		"16": "images/icon16.png",
+		"48": "images/icon48.png",
+		"128": "images/icon128.png"
+		}
+	},  
+	"icons": {
+		"16": "images/icon16.png",
+		"48": "images/icon48.png",
+		"128": "images/icon128.png"
+	}
+}
