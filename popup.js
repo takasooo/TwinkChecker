@@ -101,9 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
 				return;
 			}
 			
-			// Extract only command text (remove HTML tags)
+			// Extract only command text and preserve line breaks
 			const tempDiv = document.createElement('div');
 			tempDiv.innerHTML = resultsText;
+			// Replace <br> tags with newlines before extracting text
+			tempDiv.innerHTML = tempDiv.innerHTML.replace(/<br\s*\/?>/gi, '\n');
 			const commandsText = tempDiv.textContent || tempDiv.innerText || '';
 			
 			// Copy to clipboard
