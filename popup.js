@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		copyAllButton.addEventListener('click', function() {
 			const resultsText = resultsContent.innerHTML;
 			
-			if (resultsText === 'Пока результатов нет...') {
+			if (resultsText === 'Пока результатов нет...' || resultsText.trim() === '') {
 				// Show message if no results
 				copyAllButton.textContent = '❌ Нет результатов';
 				copyAllButton.style.backgroundColor = '#ff6b6b';
@@ -106,7 +106,21 @@ document.addEventListener('DOMContentLoaded', function() {
 			tempDiv.innerHTML = resultsText;
 			// Replace <br> tags with newlines before extracting text
 			tempDiv.innerHTML = tempDiv.innerHTML.replace(/<br\s*\/?>/gi, '\n');
-			const commandsText = tempDiv.textContent || tempDiv.innerText || '';
+			let commandsText = tempDiv.textContent || tempDiv.innerText || '';
+			
+			// Remove "Пока результатов нет..." if it somehow got mixed in
+			commandsText = commandsText.replace(/Пока результатов нет\.\.\./g, '').trim();
+			
+			// Check if there's actual content after cleaning
+			if (commandsText.trim() === '') {
+				copyAllButton.textContent = '❌ Нет результатов';
+				copyAllButton.style.backgroundColor = '#ff6b6b';
+				setTimeout(() => {
+					copyAllButton.textContent = '📋 Копировать все команды';
+					copyAllButton.style.backgroundColor = 'rgb(255, 138, 0)';
+				}, 1500);
+				return;
+			}
 			
 			// Copy to clipboard
 			navigator.clipboard.writeText(commandsText).then(() => {
@@ -376,6 +390,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		}
 	} else if (message.type === 'result') {
 		// Handle twink results
+		// Clear "no results" message if it exists
+		if (resultsContent.innerHTML === 'Пока результатов нет...') {
+			resultsContent.innerHTML = '';
+		}
+		
 		let element = document.createElement('div');
 		element.innerHTML = message.content;
 		resultsContent.appendChild(element);
