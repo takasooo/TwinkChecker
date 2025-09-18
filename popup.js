@@ -132,7 +132,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (startButton) {
 		startButton.addEventListener('click', function() {
 			chrome.storage.local.set({ "isWorking": true });
-			chrome.tabs.executeScript({ file: "content.js" });
+			
+			// Get current active tab and execute script using Manifest V3 API
+			chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+				chrome.scripting.executeScript({
+					target: { tabId: tabs[0].id },
+					files: ["content.js"]
+				});
+			});
 			
 			// Initialize progress
 			initializeProgress();
