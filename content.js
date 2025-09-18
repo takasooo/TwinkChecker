@@ -92,13 +92,23 @@ function processElement(element) {
         (uniqueCrimeFractions.length > 1) || 
         (repeatedStateKeys.length > 0)
     ) {
-        for (let i = 0; i < cardFractions.length; i++) {
-            const currentCard = cardFractions[i];
-            const others = cardFractions.filter((_, index) => index !== i).map(card => card[0]).join(' | ');
-            let line = `offwarn ${currentCard[1]} Твинк: ${currentCard[0]} | ${others} // by ${nickname}<br>`;
-            if (!doNotRepeat.includes(line)){
-                doNotRepeat.push(line);
-                content += line;
+        // Check if it's only Crime + Weazel News combination (should be allowed)
+        const hasCrime = onlyFractions.some(item => crimeFractions.includes(item));
+        const hasState = onlyFractions.some(item => stateFractions.includes(item));
+        const hasOnlyWeazelNews = hasState && onlyFractions.filter(item => stateFractions.includes(item)).length === 1 && onlyFractions.includes("Weazel News");
+        
+        // Skip punishment if it's only Crime + Weazel News
+        if (hasCrime && hasOnlyWeazelNews) {
+            // Do nothing - this combination is allowed
+        } else {
+            for (let i = 0; i < cardFractions.length; i++) {
+                const currentCard = cardFractions[i];
+                const others = cardFractions.filter((_, index) => index !== i).map(card => card[0]).join(' | ');
+                let line = `offwarn ${currentCard[1]} Твинк: ${currentCard[0]} | ${others} // by ${nickname}<br>`;
+                if (!doNotRepeat.includes(line)){
+                    doNotRepeat.push(line);
+                    content += line;
+                }
             }
         }
     }
