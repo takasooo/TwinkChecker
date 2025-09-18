@@ -133,11 +133,11 @@ function processNextElement() {
 }
 
 async function sendData(content) {
-	// Send progress update
+	// Send progress update (currentIndex + 1 because we just processed the current element)
 	chrome.runtime.sendMessage({
 		type: 'progress',
 		total: totalElements,
-		processed: currentIndex
+		processed: currentIndex + 1
 	});
 	
 	if (content.trim() !== '') {

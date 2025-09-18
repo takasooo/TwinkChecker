@@ -258,7 +258,7 @@ function updateProgressDisplay() {
 		progressBar.style.width = percentage + '%';
 		progressText.textContent = `${processedPlayers} / ${totalPlayers}`;
 		
-		if (processedPlayers === totalPlayers) {
+		if (processedPlayers >= totalPlayers) {
 			progressStatus.textContent = 'Сканирование завершено';
 		} else if (processedPlayers > 0) {
 			progressStatus.textContent = 'Сканирование в процессе...';
