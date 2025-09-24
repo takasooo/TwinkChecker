@@ -281,8 +281,9 @@ function resetProgress() {
 	progressText.textContent = '0 / 0';
 	progressStatus.textContent = 'Готов к запуску';
 	
-	// Clear stored progress
+	// Clear stored progress and saved position
 	chrome.storage.local.set({ 'progressData': { total: 0, processed: 0 } });
+	chrome.storage.local.remove(['savedPosition']);
 }
 
 // Export results to file function
