@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			// Update progress status
 			if (progressStatus) {
 				progressStatus.textContent = 'Остановлено пользователем';
+				progressStatus.style.color = '#ff6b6b';
 			}
 			
 			// Visual feedback
@@ -269,6 +270,7 @@ function updateProgressDisplay() {
 function initializeProgress() {
 	progressSection.style.display = 'block';
 	progressStatus.textContent = 'Инициализация сканирования...';
+	progressStatus.style.color = '#6c757d';
 	progressBar.style.width = '0%';
 	progressText.textContent = '0 / 0';
 }
@@ -280,6 +282,7 @@ function resetProgress() {
 	progressBar.style.width = '0%';
 	progressText.textContent = '0 / 0';
 	progressStatus.textContent = 'Готов к запуску';
+	progressStatus.style.color = '#6c757d';
 	
 	// Clear stored progress and saved position
 	chrome.storage.local.set({ 'progressData': { total: 0, processed: 0 } });
@@ -385,6 +388,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		
 		// Check if scanning is completed and trigger export
 		if (totalPlayers > 0 && processedPlayers >= totalPlayers) {
+			if (progressStatus) {
+				progressStatus.textContent = 'Сканирование завершено';
+				progressStatus.style.color = '#28a745';
+			}
 			setTimeout(() => {
 				exportResultsToFile();
 			}, 1000); // Small delay to ensure all results are saved
@@ -406,6 +413,24 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			currentResults += message.content;
 			chrome.storage.local.set({ 'storedResults': currentResults });
 		});
+	} else if (message.type === 'captcha_detected') {
+		// Handle captcha detection
+		if (progressStatus) {
+			progressStatus.textContent = 'Обнаружена капча - остановлено';
+			progressStatus.style.color = '#ff6b6b';
+		}
+	} else if (message.type === 'rate_limit_detected') {
+		// Handle rate limit detection
+		if (progressStatus) {
+			progressStatus.textContent = 'Ограничение скорости - пауза...';
+			progressStatus.style.color = '#ffa500';
+		}
+	} else if (message.type === 'break_notification') {
+		// Handle break notifications
+		if (progressStatus) {
+			progressStatus.textContent = message.message || 'Пауза для предотвращения капчи...';
+			progressStatus.style.color = '#4dabf7';
+		}
 	} else {
 		// Legacy support for old message format
 		let element = document.createElement('div');
